@@ -4,11 +4,11 @@ The purpose of this software is to allows users to manage and view weather infor
 
 1. Setup: Ensure Python, Flask, and required packages (pymongo, requests) are installed.
 
-2. Run: Execute the Flask application (python app.py or as configured) to start the web server.
+2. Run: Execute the Flask application (python app.py) in a terminal to start the web server.
 
-3. Interface: Access the web interface via a browser. The main page (/) shows weather data for previously selected cities. Add a city by submitting a form with its name. The program fetches weather data from OpenWeatherMap API and stores it in MongoDB.
+3. Interface: Access the web interface via a browser. The main page (http://127.0.0.1:5000/) shows weather data for previously selected cities. Add a city by submitting a form with its name. The program fetches weather data from OpenWeatherMap API and stores it in MongoDB.
 
-4. Update and Delete: Use buttons or forms to update preferences (/update_preference) by adding new cities or delete existing ones (/delete_preference). These actions update the MongoDB collections (preferences and weather_data) accordingly.
+4. Update and Delete: Use buttons or forms to update preferences by adding new cities or delete existing ones. These actions update the MongoDB collections (preferences and weather_data) accordingly.
 
 The software has error handling capabilities where, if weather data isn't available for a city, appropriate error messages are displayed.
 
@@ -18,7 +18,7 @@ The software has error handling capabilities where, if weather data isn't availa
 
 The database used for this software is MongoDB.
 
-The structure of the database involved two tables: preferences (which is a collection of user-inputted cities from the dashboard) and weather_data (which is a collection of stored weather information fetched from the OpenWeatherMap API for each city inputted in preferences). Both of these tables contained the data used by the dashboard to display information for the end user.
+The structure of the database involves two collections: preferences (which is a collection of user-inputted cities from the dashboard) and weather_data (which is a collection of stored weather information fetched from the OpenWeatherMap API for each city inputted in preferences). Both of these tables contained the data used by the dashboard to display information for the end user.
 
 # Development Environment
 
