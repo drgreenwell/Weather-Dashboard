@@ -1,0 +1,53 @@
+<!-- app/templates/index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        .preferences-container {
+            display: none; /* Hide by default */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Dashboard</h1>
+        <form method="POST">
+            <input type="text" name="city" placeholder="Enter city">
+            <button type="submit">Add City</button>
+        </form>
+        <div class="weather-info">
+            {% if error %}
+                <p>{{ error }}</p>
+            {% else %}
+                {% for weather in weather_data %}
+                    <h2>Weather in {{ weather['name'] }}</h2>
+                    <p>Temperature: {{ weather['main']['temp'] }}°C</p>
+                    <p>Description: {{ weather['weather'][0]['description'] }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <h2>
+            <button id="togglePreferences">Saved Cities</button>
+        </h2>
+        <div id="preferencesContainer" class="preferences-container">
+            <ul>
+                {% for city in cities %}
+                    <li>{{ city }} <form action="/delete_preference" method="POST"><input type="hidden" name="city" value="{{ city }}"><button type="submit">Delete</button></form></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#togglePreferences').click(function() {
+                $('#preferencesContainer').slideToggle();
+            });
+        });
+    </script>
+</body>
+</html>
